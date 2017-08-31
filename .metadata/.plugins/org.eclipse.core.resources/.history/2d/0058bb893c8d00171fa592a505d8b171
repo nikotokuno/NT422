@@ -1,0 +1,75 @@
+import static org.junit.Assert.*;
+
+
+import org.junit.After;
+import org.junit.AfterClass;
+import org.junit.Before;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import toTest.Date;
+
+public class IsLeapTest {
+
+	private toTest.Date date;
+	
+	@BeforeClass
+	public static void setUpBeforeClass() throws Exception {
+	}
+
+	@AfterClass
+	public static void tearDownAfterClass() throws Exception {
+	}
+
+	@Before
+	public void setUp() throws Exception {
+		this.date = new toTest.Date(12, 12, 2012);
+	}
+
+	@After
+	public void tearDown() throws Exception {
+	}
+
+	@Test
+	public void isLeapTest() {
+		
+		// Arrange
+		
+		// Act
+		Object resultLeap1 = toTest.Date.isLeap(2012);
+		
+		Object resultCentYear = toTest.Date.isLeap(1990);
+		
+		Object resultLeap2 = toTest.Date.isLeap(1992);
+		Object resultLeap3 = toTest.Date.isLeap(1996);
+		Object resultLeap4 = toTest.Date.isLeap(2000);
+		
+		
+		// Assert
+		assertEquals("result should be true since 2012 is divisible by 4", true, resultLeap1);
+		
+		assertEquals("result should be false since 1990 is divisible by 400", false, resultCentYear);
+		
+		assertEquals("result should be true since 1996 is divisible by 4", true, resultLeap2);
+		
+		assertEquals("result should be true since 1996 is divisible by 4", true, resultLeap3);
+			
+		assertEquals("result should be true since 2000 is divisible by 4", true, resultLeap4);
+	}
+	
+	@Test
+	public void isCenturyLeapYearTest() {
+		
+		// Arrange
+		int tempYear1 = 2000, tempYear2 = 1961;
+		
+		// Act
+		Object resultCentYear1 = toTest.Date.isLeap(tempYear1);
+		Object resultCentYear2 = toTest.Date.isLeap(tempYear2);
+		
+		// Assert
+		assertEquals("result should be false since 2000 is divisible by 400 and 4", true, resultCentYear1);
+		assertEquals("result should be false since 1961 is divisible by 400 but not 4", false, resultCentYear2);
+	}
+
+}
